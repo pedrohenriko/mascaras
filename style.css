@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+* {
+    font-family: 'Inconsolata', monospace;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ffdcf3, #b9a4c0);;
+}
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+input {
+    padding: 30px;
+    margin: 5px;
+}
+.copy {
+    cursor: pointer;
+    background-color: blueviolet;
+    padding: 20px;
+    color: white;
+    border-radius: 5px;
+}
