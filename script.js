@@ -1,3 +1,4 @@
+let tecnicosSelecao = document.querySelector('div.tecnicos');
 //pegar primeiro e último nome...
 console.log('so tres nome');
 function extrairPrimeiroUltimoNome(nomeCompleto) {
@@ -57,10 +58,14 @@ input.addEventListener('input', () => {
                 console.log('foi pro else');
                 console.log('ola');
                 resposta.innerHTML = `${resposta.innerHTML}, ${respostaAtualizada.toUpperCase()}`
+                numeroDeTecnicos = numeroDeTecnicos + 1;
+                tecnicosSelecao.innerHTML += `<div class="selecionarTecnicos" onclick="remove(this)">${respostaAtualizada.toUpperCase()}</div>`
             } else {
                 console.log(input.value.trim());
                 resposta.innerHTML = `${respostaAtualizada.toUpperCase()}`
-                console.log('nao foi pro else')
+                console.log('nao foi pro else');
+                numeroDeTecnicos = numeroDeTecnicos + 1;
+                tecnicosSelecao.innerHTML += `<div class="selecionarTecnicos" onclick="remove(this)">${respostaAtualizada.toUpperCase()}</div>`
             }
             input.value = "";
         }, 300);
@@ -68,11 +73,11 @@ input.addEventListener('input', () => {
 });
 
 //substituir última vírgula por um "e"
-function trocarVirgula(texto) {
+/*function trocarVirgula(texto) {
     let textoVirgula = texto.innerHTML;
     let ultimaVirgula = textoVirgula.lastIndexOf(',');
     if (ultimaVirgula !== -1) {
-        return `${textoVirgula.substring(0, ultimaVirgula)} e ${textoVirgula.substring(ultimaVirgula + 1)}`;
+        return `${textoVirgula.substring(0, ultimaVirgula)} e${textoVirgula.substring(ultimaVirgula + 1)}`;
     } else {
         return textoVirgula;
     }
@@ -81,16 +86,16 @@ function trocarVirgula(texto) {
 
 //Texto final de resultado
 let grupoDeSuporte = document.querySelector('input#grupodesuporte');
-let boxResult = document.querySelector('div.box');
+let boxResult = document.querySelector('textarea.box');
 function enviar() {
     if (numeroDeTecnicos !== 1) {
-        boxResult.innerHTML = `Foram realizadas 3 tentativas de contato sem sucesso com os técnicos ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`;
+        boxResult.value = `Foram realizadas 3 tentativas de contato sem sucesso com os técnicos ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`;
     } else {
         console.log('mais tecnicos');
 
 
         console.log('um tecnico');
-        boxResult.innerHTML = `Foram realizadas 3 tentativas de contato sem sucesso com o(a) técnico(a) ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`
+        boxResult.value = `Foram realizadas 3 tentativas de contato sem sucesso com o(a) técnico(a) ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`
     }
 }
 //botão para caso você tenha realizado o acionamento
@@ -102,12 +107,45 @@ function acionamento() {
 
 
         console.log('um tecnico');
-        boxResult.innerHTML = `Acionamento realizado com o técnico ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`
+        boxResult.value = `Acionamento realizado com o técnico ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`
     }
-}
+}*/
 //função para copiar
 function copy() {
-    navigator.clipboard.writeText(boxResult.innerHTML);
-    boxResult.innerHTML = "";
+    navigator.clipboard.writeText(boxResult.value);
+    boxResult.value = "";
     resposta.innerHTML = "";
+    numeroDeTecnicos = 0;
 }
+
+function remove(el) {
+    let element = el;
+    element.remove();
+};
+
+function criarMascara(kaka) {
+    let campo = `${kaka[0].innerText}`;
+    for (let i = 1; i < kaka.length - 1; i++) {
+        campo += `, ${kaka[i].innerText}`;
+    }
+    campo += ` e ${kaka[kaka.length - 1].innerText}`
+    console.log(campo)
+    return campo;
+};
+
+function teste() {
+    let selecao = tecnicosSelecao.children;
+    console.log(criarMascara(selecao));
+    let joaquim = 'ola';
+    console.log(joaquim);
+    let tecnicosParaMascara = String(criarMascara(selecao));
+    if (selecao.length < 2){
+        boxResult.value = `3 tentativas de contato sem sucesso com o técnico ${tecnicosParaMascara} do grupo de suporte ${grupoDeSuporte.value}.`;
+    } else {
+    boxResult.value = `Tentativa de contato sem sucesso com os técnicos ${tecnicosParaMascara}`;
+        boxResult.value = `tentativa de contato sem sucesso com os técnicos ${tecnicosParaMascara} do grupo de suporte ${grupoDeSuporte.value}.`;
+    }
+    console.log(typeof String(tecnicosParaMascara));
+    console.log(String(tecnicosParaMascara));
+};
+
