@@ -115,15 +115,19 @@ function remove(el) {
     let element = el;
     element.remove();
 };
-
+//editar esta parte amanhã
 function criarMascara(kaka) {
     let campo = `${kaka[0].innerText}`;
-    for (let i = 1; i < kaka.length - 1; i++) {
+    console.log(`a lenght é ${kaka.length}`)
+    if (Array.isArray(kaka) !== false){
+        for (let i = 1; i < kaka.length - 1; i++) {
         campo += `, ${kaka[i].innerText}`;
+        console.log('é maior que 1')
+        campo += ` e ${kaka[kaka.length - 1].innerText}`
     }
-    campo += ` e ${kaka[kaka.length - 1].innerText}`
+
     console.log(campo)
-    return campo;
+    return campo;}
 };
 
 function teste() {
