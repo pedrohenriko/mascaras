@@ -55,15 +55,9 @@ input.addEventListener('input', () => {
         setTimeout(() => {
             let respostaAtualizada = `${extrairPrimeiroUltimoNome(input.value.trim())}`
             if (resposta.innerText !== "") {
-                console.log('foi pro else');
-                console.log('ola');
-                resposta.innerHTML = `${resposta.innerHTML}, ${respostaAtualizada.toUpperCase()}`
                 numeroDeTecnicos = numeroDeTecnicos + 1;
                 tecnicosSelecao.innerHTML += `<div class="selecionarTecnicos" onclick="remove(this)">${respostaAtualizada.toUpperCase()}</div>`
             } else {
-                console.log(input.value.trim());
-                resposta.innerHTML = `${respostaAtualizada.toUpperCase()}`
-                console.log('nao foi pro else');
                 numeroDeTecnicos = numeroDeTecnicos + 1;
                 tecnicosSelecao.innerHTML += `<div class="selecionarTecnicos" onclick="remove(this)">${respostaAtualizada.toUpperCase()}</div>`
             }
@@ -71,7 +65,8 @@ input.addEventListener('input', () => {
         }, 300);
     }
 });
-
+let grupoDeSuporte = document.querySelector('input#grupodesuporte');
+let boxResult = document.querySelector('textarea.box');
 //substituir última vírgula por um "e"
 /*function trocarVirgula(texto) {
     let textoVirgula = texto.innerHTML;
@@ -85,8 +80,6 @@ input.addEventListener('input', () => {
 
 
 //Texto final de resultado
-let grupoDeSuporte = document.querySelector('input#grupodesuporte');
-let boxResult = document.querySelector('textarea.box');
 function enviar() {
     if (numeroDeTecnicos !== 1) {
         boxResult.value = `Foram realizadas 3 tentativas de contato sem sucesso com os técnicos ${trocarVirgula(resposta)} do grupo de suporte ${grupoDeSuporte.value}.`;
