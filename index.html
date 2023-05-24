@@ -11,29 +11,99 @@
 
 <body>
     <div class="container">
-        <h1>Controle & Acompanhamento</h1>
-        <p>Tentativa de contato</p>
+        <!-- <h1>Controle & Acompanhamento</h1>
+        <p>Tentativa de contato</p> -->
+        <div class="areaDeCima">
+            <div class="areaEsquerda">
+                <div class="itemsaoEsquerda" onclick="mascaraBefore(this)">
+                    Tentativa de contato sem sucesso com
+                </div>
+                <div class="itemsaoEsquerda" onclick="mascaraBefore(this)">
+                    1º Tentativa de contato sem sucesso com
+                </div>
+                <div class="itemsaoEsquerda" onclick="mascaraBefore(this)">
+                    2º Tentativa de contato sem sucesso com
+                </div>
+                <div class="itemsaoEsquerda" onclick="mascaraBefore(this)">
+                    3º Tentativa de contato sem sucesso com
+                </div>
+                <div class="itemsaoEsquerda" onclick="mascaraBefore(this)">
+                    Acionamento realizado com
+                </div>
+            </div>
+            <div class="areaEsquerda2">
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    o técnico
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    os técnicos
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    a técnica
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    as técnicas
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    o líder
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    o gerente N1
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    o gerente N2
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    o executor
+                </div>
+                <div class="itemsaoEsquerda2" onclick="cargo(this)">
+                    a executora
+                </div>
+            </div>
+            <!-- <div class="areaDireita">
+                <div class="alinhamentos" onclick="alinhamento(this)">Ficou alinhado para deixar o incidente no nome de</div>
+            </div> -->
+        </div>
         <div class="input">
-            <input type="text" id="tentativacontato" placeholder="Técnico(a)">
+            <input type="text" id="tentativacontato" placeholder="Técnico(a)/Líder/Ger...">
             <input type="text" name="" id="grupodesuporte" placeholder="Grupo de Suporte">
-            <input type="button" value="tentativa de contato" onclick="enviar()">
-            <input type="button" value="acionamento" onclick="acionamento()">
+            <!-- <input type="button" value="tentativa de contato" onclick="enviar()">
+        <input type="button" value="acionamento" onclick="acionamento()"> -->
         </div>
         <div class="resposta">
 
         </div>
-        <div class="tecnicos">
+        <div class="conteudo">
+            <div class="mascaraBefore">
+            </div>
+            <div class="cargo">
 
+            </div>
+            <div class="tecnicos">
+
+            </div>
+            <div class="mascaraAfter">
+            </div>
+            <div class="pontoOuVirgula">
+                
+            </div>
+            <!-- <div class="alinhamento">
+                Adicionar algum alinhamento...
+            </div> -->
         </div>
-        <textarea name="ola" cols="30" rows="10" class="box"></textarea>
-        <div class="copy" id="copy" onclick="copy()">
-            Copiar! :)
+        <!-- <textarea name="ola" cols="30" rows="10" class="box"></textarea> -->
+        <div class="botoes">
+            <div class="copy" id="copy" onclick="copy()">
+                Copiar! :)
+            </div>
+            <div class="copy" id="copy" onclick="consoleLogar()">
+                consolelogar
+            </div>
+            <!-- <div class="copy" id="tecnicosLista" onclick="teste()">
+                Criar!
+            </div> -->
         </div>
-        <div class="copy" id="tecnicosLista" onclick="teste()">
-            botao 2, teste!
-        </div>
-    </div>
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
