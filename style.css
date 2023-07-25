@@ -66,6 +66,7 @@ div#tecnicosLista[disabled] {
 .conteudo {
     display: flex;
     align-items: center;
+    width: 100%;
     background-color: rgba(240, 0, 0, 0.075);
 }
 
