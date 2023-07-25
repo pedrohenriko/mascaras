@@ -1,46 +1,115 @@
 let tecnicosSelecao = document.querySelector('div.tecnicos');
 //pegar primeiro e último nome...
 console.log('so tres nome');
-function extrairPrimeiroUltimoNome(nomeCompleto) {
-    let nomeAtualizado = nomeCompleto.replace(/[^a-zA-Z0-9\s]/g, '');
-    console.log(nomeAtualizado)
-    const regex = /(\D+)(\d+)/;
-    let match = nomeAtualizado.match(regex);
-    console.log(Array.isArray(match))
-    if (Array.isArray(match) !== true) {
-        var partesNome = nomeAtualizado.trim().split(" ");
-        if (partesNome.length < 2) {
-            return nomeAtualizado;
-        }
-        var primeiroNome = partesNome[0];
-        var ultimoNome = partesNome[partesNome.length - 1];
-        if (partesNome.length > 2) {
-            var primeiroSobrenome = partesNome[1].charAt(0).toUpperCase();
-            return `${primeiroNome} ${primeiroSobrenome} ${ultimoNome}`;
-        } else {
-            return `${primeiroNome} ${ultimoNome}`;
-        }
-        console.log(`${primeiroNome} ${ultimoNome}`)
-    } else {
-        console.log('foi pro else');
-        console.log(match[1])
-        var partesNome = match[1].trim().split(" ");
-        if (partesNome.length < 2) {
-            return match[1];
-        }
-        var primeiroNome = partesNome[0];
-        var ultimoNome = partesNome[partesNome.length - 1];
-        console.log(match[1])
-        console.log(match[2])
-        if (partesNome.length > 2) {
-            var primeiroSobrenome = partesNome[1].charAt(0).toUpperCase();
-            return `${primeiroNome} ${primeiroSobrenome} ${ultimoNome}(final ${match[2].slice(-3)})`;
-        } else {
-            return `${primeiroNome} ${ultimoNome}(final ${match[2].slice(-3)})`;
-        }
-        console.log(`${primeiroNome} ${ultimoNome}(final ${match[2].slice(-3)})`)
+
+function ajeitarNumeros(mano) {
+    let manoManipulado = mano.match(/(\d+)/gm);
+    if (manoManipulado === null) {
+        return "";
     }
+    else {
+        let construir = "";
+        let arrayNumeros = [];
+        let construir2 = "";
+        let construir3 = "";
+        console.log(manoManipulado)
+        let proximoNumero;
+        for (let i = 0; construir.length < 9; i++) {
+            construir += manoManipulado[i];
+            proximoNumero = i;
+
+        }
+        arrayNumeros.push(construir)
+        if (proximoNumero < manoManipulado.length - 1) {
+            for (let i = proximoNumero + 1; construir2.length < 9; i++) {
+                construir2 += manoManipulado[i];
+                proximoNumero = i;
+            }
+            if (construir2 !== "") {
+                arrayNumeros.push(construir2)
+            }
+        }
+        if (proximoNumero < manoManipulado.length - 1) {
+            for (let i = proximoNumero + 1; construir3.length < 9; i++) {
+                construir3 += manoManipulado[i];
+            }
+            if (construir3 !== "") {
+                arrayNumeros.push(construir3)
+            }
+        }
+        let resultadoFinal = arrayNumeros[0].slice(-3);
+        console.log(resultadoFinal)
+
+        if (arrayNumeros.length > 1) {
+            if (arrayNumeros.length == 3) {
+
+                resultadoFinal += `, ${arrayNumeros[1].slice(-3)} e ${arrayNumeros[2].slice(-3)}`
+            } else {
+                resultadoFinal += ` e ${arrayNumeros[1].slice(-3)}`
+            }
+
+            console.log('haha2')
+        }
+        return `(final ${resultadoFinal})`;
+        console.log(resultadoFinal)
+    }
+
 }
+
+function extrairPrimeiroUltimoNome(nomeCompleto) {
+    // let nomeAtualizado = nomeCompleto.replace(/[^a-zA-Z0-9\s]/g, '');
+    // console.log(nomeAtualizado)
+    // const regex = /(\D+)(\d+)/;
+    // let match = nomeAtualizado.match(regex);
+    // console.log(Array.isArray(match))
+    let apenasNome = nomeCompleto.match(/[A-Za-z]+/gm);
+    console.log(apenasNome)
+
+    // let apenasNumero = nomeCompleto.match(/[0-9]+/gm);
+    let apenasNumero = nomeCompleto.slice(nomeCompleto.search(/\d/))
+
+
+    console.log(apenasNumero)
+    console.log(Array.isArray(apenasNumero))
+    console.log(Array.isArray(apenasNome))
+
+
+    if (apenasNome.length < 2) {
+        console.log(`o tamanho do array é menor que 2, é um array de ${apenasNome.length}`)
+        return `${apenasNome[0]}${ajeitarNumeros(apenasNumero)}`
+    } else {
+        console.log(`o tamanho do array é maior que 2, é um array de ${apenasNome.length}`)
+    }
+
+    if (apenasNome.length < 2) {
+        return `${apenasNome}${ajeitarNumeros(apenasNumero)}`;
+    }
+    var primeiroNome = apenasNome[0];
+    var ultimoNome = apenasNome[apenasNome.length - 1];
+    if (apenasNome.length > 2) {
+        var primeiroSobrenome = apenasNome[1].charAt(0).toUpperCase();
+        return `${primeiroNome} ${primeiroSobrenome} ${ultimoNome}${ajeitarNumeros(apenasNumero)}`;
+    } else {
+        return `${primeiroNome} ${ultimoNome}${ajeitarNumeros(apenasNumero)}`;
+    }
+    console.log(`${primeiroNome} ${ultimoNome}`)
+
+    if (apenasNome.length < 2) {
+        return `${apenasNome}${ajeitarNumeros(apenasNumero)}`;
+    }
+    var primeiroNome = apenasNome[0];
+    var ultimoNome = apenasNome[apenasNome.length - 1];
+    console.log(match[1])
+    console.log(match[2])
+    if (apenasNome.length > 2) {
+        var primeiroSobrenome = apenasNome[1].charAt(0).toUpperCase();
+        return `${primeiroNome} ${primeiroSobrenome} ${ultimoNome}${ajeitarNumeros(apenasNumero)}`;
+    } else {
+        return `${primeiroNome} ${ultimoNome}${ajeitarNumeros(apenasNumero)}`;
+    }
+    console.log(`${primeiroNome} ${ultimoNome}${ajeitarNumeros(apenasNumero)}`)
+}
+
 
 //selecionar algumas variáveis
 const input = document.querySelector('input#tentativacontato');
@@ -112,23 +181,17 @@ function remove(el) {
 };
 //editar esta parte amanhã
 function criarMascara(kaka) {
-
-    if (Array.isArray(Array.from(kaka)) !== false){
-        console.log('AAAAAAAAAA É TRUE');
-        let campo = `${kaka[0].innerText}`;
-        console.log(`a lenght é ${kaka.length}`)
-        console.log('éarray');
-        for (let i = 1; i < kaka.length - 1; i++) {
-        campo += `, ${kaka[i].innerText}`;
-        console.log('é maior que 1')
+    let campo = `${kaka[0].innerText}`;
+    if (kaka.length == 1) {
+        return campo;
+    } else if (kaka.length == 2) {
         campo += ` e ${kaka[kaka.length - 1].innerText}`
-    }
-    console.log(campo)
-    return campo;
-} else {
-    console.log('AAAAAAAAAA É FALSE');
-        campo = `${kaka.innerText}`;
-        console.log(kaka.innerText);
+        return campo;
+    } else {
+        for (let i = 1; i < kaka.length - 1; i++) {
+            campo += `, ${kaka[i].innerText}`;
+        }
+        campo += ` e ${kaka[kaka.length - 1].innerText}`;
         return campo;
     }
 };
@@ -138,11 +201,11 @@ function teste() {
     console.log(criarMascara(selecao));
     let joaquim = 'ola';
     console.log(joaquim);
-    let tecnicosParaMascara = String(criarMascara(selecao));
-    if (selecao.length < 2){
+    let tecnicosParaMascara = criarMascara(String(selecao));
+    if (selecao.length < 2) {
         boxResult.value = `3 tentativas de contato sem sucesso com o técnico ${tecnicosParaMascara} do grupo de suporte ${grupoDeSuporte.value}.`;
     } else {
-    /*boxResult.value = `Tentativa de contato sem sucesso com os técnicos ${tecnicosParaMascara}`;*/
+        /*boxResult.value = `Tentativa de contato sem sucesso com os técnicos ${tecnicosParaMascara}`;*/
         boxResult.value = `Tentativa de contato sem sucesso com os técnicos ${tecnicosParaMascara} do grupo de suporte ${grupoDeSuporte.value}.`;
     }
     console.log(typeof String(tecnicosParaMascara));
@@ -159,15 +222,16 @@ let botaoPrincipal = document.querySelector('div.tecnicosLista');
 let mascaraBeforeFinal = document.querySelector('div.mascaraBefore');
 let cargoFinal = document.querySelector('div.cargo');
 let tecnicosFinal = document.querySelector('div.tecnicos');
+let tecnicosArrayzados = document.querySelectorAll('div.selecionarTecnicos');
 let mascaraGrupo = document.querySelector('div.mascaraAfter');
 let pontoOuVirgula = document.querySelector('div.pontoOuVirgula');
 
 
 
 
-grupoDeSuporte.addEventListener('input', ()=>{
+grupoDeSuporte.addEventListener('input', () => {
     let grupoValor = grupoDeSuporte.value;
-    if (grupoValor !== ""){
+    if (grupoValor !== "") {
         mascaraGrupo.innerText = ` do grupo de suporte ${grupoValor}`;
         pontoOuVirgula.innerHTML = ".";
     } else {
@@ -177,13 +241,13 @@ grupoDeSuporte.addEventListener('input', ()=>{
 })
 
 
-function mascaraBefore(element){
+function mascaraBefore(element) {
     let mascaraBeforeCampo = document.querySelector('div.mascaraBefore');
     let preenchimento = element.innerText;
     mascaraBeforeCampo.innerText = `${preenchimento}`;
 }
 
-function cargo(element){
+function cargo(element) {
     let mascaraBeforeCampo = document.querySelector('div.cargo');
     let preenchimento = element.innerText;
     mascaraBeforeCampo.innerText = `${preenchimento}`;
@@ -195,11 +259,14 @@ function cargo(element){
 //     mascaraBeforeCampo.innerText = `${preenchimento}`;
 // }
 
-function consoleLogar(){
-console.log(`${mascaraBeforeFinal.innerText} ${cargoFinal.innerText} ${tecnicosFinal.innerText} ${mascaraGrupo.innerText}${pontoOuVirgula.innerText}`)
+function consoleLogar() {
+    console.log(`${mascaraBeforeFinal.innerText.trim()} ${cargoFinal.innerText.trim()} ${criarMascara(Array(tecnicosFinal.children)[0])} ${mascaraGrupo.innerText.trim()}${pontoOuVirgula.innerText.trim()}`);
 }
 
 //função para copiar
 function copy() {
-    navigator.clipboard.writeText(`${mascaraBeforeFinal.innerText} ${cargoFinal.innerText} ${tecnicosFinal.innerText} ${mascaraGrupo.innerText}${pontoOuVirgula.innerText}`);
+    navigator.clipboard.writeText(`${mascaraBeforeFinal.innerText.trim()} ${cargoFinal.innerText.trim()} ${criarMascara(Array(tecnicosFinal.children)[0])} ${mascaraGrupo.innerText.trim()}${pontoOuVirgula.innerText.trim()}`);
+    console.log(criarMascara(Array(tecnicosFinal.children)[0]))
 }
+
+// Array.from(tecnicosFinal.children);
